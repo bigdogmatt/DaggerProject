@@ -7,12 +7,61 @@
   tools:context=".MainActivity">
 
   <TextView
+    android:id="@+id/title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Hello World!"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
+    android:layout_marginTop="@dimen/xl_margin"
+    android:fontFamily="sans-serif-condensed-medium"
+    android:text="@string/login"
+    android:textSize="64sp"
+    android:textColor="@android:color/black"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/editTextEmailAddress"
+    android:layout_marginTop="@dimen/large_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:hint="@string/enter_email"
+    android:ems="10"
+    android:inputType="textEmailAddress"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/title" />
+
+  <CheckBox
+    android:id="@+id/checkBoxRememberMe"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/small_margin"
+    android:text="@string/remember_me"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress" />
+
+  <EditText
+    android:id="@+id/editTextPassword"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:layout_marginTop="@dimen/small_margin"
+    android:hint="@string/enter_password"
+    android:inputType="textPassword"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/checkBoxRememberMe" />
+
+  <Button
+    android:id="@+id/buttonLogin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/large_margin"
+    android:text="@string/login"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
