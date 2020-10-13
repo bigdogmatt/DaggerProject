@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".MainActivity">
+  tools:context=".LoginActivity">
 
   <TextView
     android:id="@+id/title"
@@ -54,14 +54,26 @@
     app:layout_constraintTop_toBottomOf="@+id/checkBoxRememberMe" />
 
   <Button
-    android:id="@+id/buttonLogin"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/large_margin"
-    android:text="@string/login"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+      android:id="@+id/buttonLogin"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/large_margin"
+      android:text="@string/login"
+      app:layout_constraintEnd_toStartOf="@+id/buttonRegister"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+      android:layout_marginStart="@dimen/xl_margin"/>
+
+  <Button
+      android:id="@+id/buttonRegister"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/large_margin"
+      android:text="@string/register"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toEndOf="@+id/buttonLogin"
+      app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+      android:layout_marginEnd="@dimen/xl_margin"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

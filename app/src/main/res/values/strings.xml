@@ -6,4 +6,8 @@
   <string name="save_username">Save username</string>
   <string name="enter_email">Enter email:</string>
   <string name="remember_me">Remember me</string>
+    <string name="welcome">WELCOME</string>
+  <string name="logout">LOGOUT</string>
+    <string name="register">REGISTER</string>
+    <string name="enter_name">Enter name:</string>
 </resources>
