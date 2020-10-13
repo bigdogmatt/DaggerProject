@@ -14,7 +14,11 @@ class RegisterActivity : MvpActivity<RegisterContract.View, RegisterContract.Pre
 
         setContentView(R.layout.activity_registration)
 
-        val presenter = RegisterPresenter()
+        setupViews()
+    }
+
+    private fun setupViews() {
+        val presenter = createPresenter()
 
         val userName = findViewById<EditText>(R.id.editTextNewName)
         val password = findViewById<EditText>(R.id.editTextNewPassword)

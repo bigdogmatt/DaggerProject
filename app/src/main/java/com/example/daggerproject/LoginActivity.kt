@@ -4,13 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
+import com.example.daggerproject.di.Injector
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
 
 class LoginActivity : MvpActivity<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
+
+  private val injector by lazy { Injector(this) }
+  private val loginPresenter by lazy { injector.providesLoginPresenter() }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
+    setupViews()
+  }
 
+  private fun setupViews() {
     val loginButton = findViewById<Button>(R.id.buttonLogin)
     val registerButton = findViewById<Button>(R.id.buttonRegister)
     val emailEditText = findViewById<EditText>(R.id.editTextEmailAddress)
@@ -19,16 +28,7 @@ class LoginActivity : MvpActivity<LoginContract.View, LoginContract.Presenter>()
     loginButton.setOnClickListener {
       val email = emailEditText.text.toString()
       val password = passwordEditText.text.toString()
-
-      val preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE)
-
-      val userDetails = preferences.getString(email + password + "data", "Username or password is incorrect.")
-      val editor = preferences.edit()
-      editor.putString("display", userDetails)
-      editor.apply()
-
-      val detailsScreen = Intent(this, MainActivity::class.java)
-      startActivity(detailsScreen)
+      loginPresenter.login(email, password)
     }
 
     registerButton.setOnClickListener {
@@ -37,5 +37,17 @@ class LoginActivity : MvpActivity<LoginContract.View, LoginContract.Presenter>()
     }
   }
 
-  override fun createPresenter(): LoginContract.Presenter = LoginPresenter()
+  override fun createPresenter(): LoginContract.Presenter = loginPresenter
+
+  override fun onUserDoesNotExist() {
+    Toast.makeText(this, "User does not exist!", Toast.LENGTH_SHORT).show()
+  }
+
+  override fun onIncorrectPassword() {
+    Toast.makeText(this, "Incorrect password!", Toast.LENGTH_SHORT).show()
+  }
+
+  override fun onLoginSuccessful() {
+    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+  }
 }

@@ -1,22 +1,23 @@
 package com.example.daggerproject
 
+import com.example.daggerproject.data.PreferencesRepository
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
 
-class LoginPresenter : MvpBasePresenter<LoginContract.View>(), LoginContract.Presenter {
+//middleman between data(repo) and view
+class LoginPresenter(
+  private val preferencesRepository: PreferencesRepository
+) : MvpBasePresenter<LoginContract.View>(), LoginContract.Presenter {
 
-  override fun attachView(view: LoginContract.View) {
-    super.attachView(view)
+  override fun login(username: String, password: String) = ifViewAttached { view ->
+    if(!preferencesRepository.exists(username)) {
+      view.onUserDoesNotExist()
+    }
+    else if(preferencesRepository.login(username, password)) {
+      view.onLoginSuccessful()
+    }
+    else {
+      view.onIncorrectPassword()
+    }
   }
 
-  override fun detachView(retainInstance: Boolean) {
-    super.detachView(retainInstance)
-  }
-
-  override fun detachView() {
-    super.detachView()
-  }
-
-  override fun destroy() {
-    super.destroy()
-  }
 }
