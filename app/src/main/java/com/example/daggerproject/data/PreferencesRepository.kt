@@ -7,25 +7,23 @@ class PreferencesRepository(private val sharedPreferences: SharedPreferences) {
     fun login(username : String, password : String) : Boolean {
         val exists = exists(username)
 
-        if(exists) {
-            return sharedPreferences.getString(username, null) == password
-        }
-        else {
-            return false
+        return if(exists) {
+            sharedPreferences.getString(username, null) == password
+        } else {
+            false
         }
     }
 
     fun register(username : String, password : String) : Boolean {
         val exists = exists(username)
 
-        if(exists) {
-            return false
-        }
-        else {
+        return if(exists || password.length < 5) {
+            false
+        } else {
             val editor = sharedPreferences.edit()
             editor.putString(username, password)
             editor.apply()
-            return true
+            true
         }
     }
 
