@@ -20,9 +20,9 @@ class MainActivity : MvpActivity<MainContract.View, MainContract.Presenter>(), M
         val preferences = getSharedPreferences("MYPREFS", MODE_PRIVATE)
         val display = preferences.getString("display", "")
 
-        val displayInfo = findViewById<TextView>(R.id.textViewName)
+        val email = findViewById<TextView>(R.id.textViewEmail)
 
-        displayInfo.text = display
+        email.text = display
         logout()
     }
 
