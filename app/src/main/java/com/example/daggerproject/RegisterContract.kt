@@ -11,7 +11,6 @@ interface RegisterContract {
     }
 
     interface Presenter : MvpPresenter<View> {
-        fun isValidPassword(password : String) : Boolean
         fun register(email : String, password : String)
     }
 }
