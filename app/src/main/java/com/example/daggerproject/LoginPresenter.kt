@@ -2,8 +2,10 @@ package com.example.daggerproject
 
 import com.example.daggerproject.data.PreferencesRepository
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import javax.inject.Inject
 
-class LoginPresenter(
+//Constructor injection
+class LoginPresenter @Inject constructor(
   private val preferencesRepository: PreferencesRepository
 ) : MvpBasePresenter<LoginContract.View>(), LoginContract.Presenter {
 

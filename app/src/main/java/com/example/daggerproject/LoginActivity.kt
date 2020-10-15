@@ -5,17 +5,21 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.daggerproject.di.Injector
+import com.example.daggerproject.di.LoginObjectGraph
 import com.hannesdorfmann.mosby3.mvp.MvpActivity
+import javax.inject.Inject
 
 class LoginActivity : MvpActivity<LoginContract.View, LoginContract.Presenter>(), LoginContract.View {
 
-  private val injector by lazy { Injector(this) }
-  private val loginPresenter by lazy { injector.providesLoginPresenter() }
+  //Field injection
+  @Inject lateinit var loginPresenter : LoginContract.Presenter
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    LoginObjectGraph.inject(this)
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
+
+    loginPresenter = createPresenter()
     setupViews()
   }
 
