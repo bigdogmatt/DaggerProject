@@ -19,7 +19,6 @@ class LoginActivity : MvpActivity<LoginContract.View, LoginContract.Presenter>()
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_login)
 
-    loginPresenter = createPresenter()
     setupViews()
   }
 

@@ -19,7 +19,6 @@ class RegisterActivity : MvpActivity<RegisterContract.View, RegisterContract.Pre
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
-        registerPresenter = createPresenter()
         setupViews()
     }
 
